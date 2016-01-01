@@ -10,26 +10,40 @@ Author URI: http://alcatraztheme.com
 License:
 */
 
+<<<<<<< HEAD
 // Set up some constants.
 define( 'ALCATRAZ_VISUAL_GUIDE', '1.0.0' );
 define( 'ALCATRAZ_HOOK_GUIDE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ALCATRAZ_HOOK_GUIDE_URL', plugin_dir_url( __FILE__ ) );
 
 // Bail if Alcatraz is not installed.
+=======
+define( 'ALCATRAZ_HOOK_GUIDE', '1.0.0' );
+define( 'ALCATRAZ_HOOK_GUIDE_PATH', plugin_dir_path( __FILE__ ) );
+define( 'ALCATRAZ_HOOK_GUIDE_URL', plugin_dir_url( __FILE__ ) );
+
+>>>>>>> 06dd25e0e4ccb2285f44a5bda7a67fd97601150c
 register_activation_hook(__FILE__, 'avh_activation_check');
 function avh_activation_check() {
 
-	    $theme_info = wp_get_theme();
+		$theme_info = wp_get_theme();
 
-	    	$alcatraz_flavors = array(
+			$alcatraz_flavors = array(
 			'Alcatraz',
 			'alcatraz'
 		);
 
+<<<<<<< HEAD
         if ( ! in_array( $theme_info->Template, $alcatraz_flavors ) ) {
             deactivate_plugins( plugin_basename(__FILE__) ); // Deactivate ourself
 	        wp_die('Sorry, you can\'t activate unless you have installed <a href="http://www.alcatraztheme.com">Alcatraz</a>');
         }
+=======
+		if ( ! in_array( $theme_info->Template, $alcatraz_flavors ) ) {
+			deactivate_plugins( plugin_basename(__FILE__) ); // Deactivate ourself
+			wp_die('Sorry, you can\'t activate unless you have installed <a href="http://www.alcatraztheme.org">Alcatraz</a>');
+		}
+>>>>>>> 06dd25e0e4ccb2285f44a5bda7a67fd97601150c
 
 }
 
@@ -79,7 +93,11 @@ add_action('wp_enqueue_scripts', 'alcatraz_hooks_stylesheet');
 function alcatraz_hooks_stylesheet() {
 
 	 if ( 'show' == isset( $_GET['alcatraz_hooks'] ) )
+<<<<<<< HEAD
 	 	wp_enqueue_style( 'avh_styles', ALCATRAZ_HOOK_GUIDE_URL . 'styles.css' );
+=======
+		 wp_enqueue_style( 'avh_styles', ALCATRAZ_HOOK_GUIDE_URL . 'styles.css' );
+>>>>>>> 06dd25e0e4ccb2285f44a5bda7a67fd97601150c
 }
 
 add_action('get_header', 'alcatraz_hooker' );
