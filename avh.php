@@ -19,15 +19,12 @@ define( 'ALCATRAZ_HOOK_GUIDE_URL', plugin_dir_url( __FILE__ ) );
 register_activation_hook(__FILE__, 'avh_activation_check');
 function avh_activation_check() {
 
-	    $theme_info = wp_get_themes();
+	    $theme_info = wp_get_theme();
 
 	    	$alcatraz_flavors = array(
 			'Alcatraz',
-			'alcatraztheme',
-			'alcatraz',
+			'alcatraz'
 		);
-
-	    	debug_log( print_r( $theme_info ) );
 
         if ( ! in_array( $theme_info->Template, $alcatraz_flavors ) ) {
             deactivate_plugins( plugin_basename(__FILE__) ); // Deactivate ourself
@@ -80,8 +77,6 @@ global $wp_admin_bar;
 // Build array of hooks.
 add_action('wp_enqueue_scripts', 'alcatraz_hooks_stylesheet');
 function alcatraz_hooks_stylesheet() {
-
-	 $alcatraz_hooks_plugin_url = plugins_url() . '/alcatraz-visual-hooks/';
 
 	 if ( 'show' == isset( $_GET['alcatraz_hooks'] ) )
 	 	wp_enqueue_style( 'avh_styles', ALCATRAZ_HOOK_GUIDE_URL . 'styles.css' );
