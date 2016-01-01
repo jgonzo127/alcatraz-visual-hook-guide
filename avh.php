@@ -2,22 +2,32 @@
 
 /*
 Plugin Name: Alcatraz Visual Hook Guide
-Plugin URI: http://jgonzo127.github.com
+Plugin URI: http://alcatraztheme.com
 Description: Find Alcatraz hooks locations inside Acatraz Theme.
 Version: 1.0.0
-Author: Jordan Gonzales
-Author URI:
+Author: Braad Martin, Carrie Forde, Jordan Gonzales
+Author URI: http://alcatraztheme.com
 License:
 */
 
+// Set up some constants.
+define( 'ALCATRAZ_VISUAL_GUIDE', '1.0.0' );
+define( 'ALCATRAZ_HOOK_GUIDE_PATH', plugin_dir_path( __FILE__ ) );
+define( 'ALCATRAZ_HOOK_GUIDE_URL', plugin_dir_url( __FILE__ ) );
+
+// Bail if Alcatraz is not installed.
 register_activation_hook(__FILE__, 'avh_activation_check');
 function avh_activation_check() {
 
-	    $theme_info = wp_get_theme();
+	    $theme_info = wp_get_themes();
 
 	    	$alcatraz_flavors = array(
 			'Alcatraz',
+			'alcatraztheme',
+			'alcatraz',
 		);
+
+	    	debug_log( print_r( $theme_info ) );
 
         if ( ! in_array( $theme_info->Template, $alcatraz_flavors ) ) {
             deactivate_plugins( plugin_basename(__FILE__) ); // Deactivate ourself
@@ -26,6 +36,7 @@ function avh_activation_check() {
 
 }
 
+// Build admin bar menu.
 add_action( 'admin_bar_menu', 'alcatraz_hook_guide_options', 100 );
 function alcatraz_hook_guide_options() {
 global $wp_admin_bar;
@@ -66,13 +77,14 @@ global $wp_admin_bar;
 	);
 }
 
+// Build array of hooks.
 add_action('wp_enqueue_scripts', 'alcatraz_hooks_stylesheet');
 function alcatraz_hooks_stylesheet() {
 
 	 $alcatraz_hooks_plugin_url = plugins_url() . '/alcatraz-visual-hooks/';
 
 	 if ( 'show' == isset( $_GET['alcatraz_hooks'] ) )
-	 	wp_enqueue_style( 'avh_styles', $alcatraz_hooks_plugin_url . 'styles.css' );
+	 	wp_enqueue_style( 'avh_styles', ALCATRAZ_HOOK_GUIDE_URL . 'styles.css' );
 }
 
 add_action('get_header', 'alcatraz_hooker' );
@@ -200,6 +212,7 @@ global $alcatraz_action_hooks;
 	}
 }
 
+// Output markup if hooks exist on page.
 function alcatraz_action_hook () {
 global $alcatraz_action_hooks;
 
