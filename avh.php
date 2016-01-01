@@ -21,7 +21,7 @@ function avh_activation_check() {
 
         if ( ! in_array( $theme_info->Template, $alcatraz_flavors ) ) {
             deactivate_plugins( plugin_basename(__FILE__) ); // Deactivate ourself
-	        wp_die('Sorry, you can\'t activate unless you have installed <a href="http://www.alcatraztheme.org">Alcatraz</a>');
+	        wp_die('Sorry, you can\'t activate unless you have installed <a href="http://www.alcatraztheme.com">Alcatraz</a>');
         }
 
 }
