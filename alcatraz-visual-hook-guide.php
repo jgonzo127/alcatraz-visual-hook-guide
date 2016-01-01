@@ -5,13 +5,13 @@ Plugin Name: Alcatraz Visual Hook Guide
 Plugin URI: http://alcatraztheme.com
 Description: Find Alcatraz hooks locations inside Acatraz Theme.
 Version: 1.0.0
-Author: Braad Martin, Carrie Forde, Jordan Gonzales
+Author:  Jordan Gonzales, Braad Martin, Carrie Forde
 Author URI: http://alcatraztheme.com
 License:
 */
 
 // Set up some constants.
-define( 'ALCATRAZ_VISUAL_GUIDE', '1.0.0' );
+define( 'ALCATRAZ_HOOK_GUIDE_VERSION', '1.0.0' );
 define( 'ALCATRAZ_HOOK_GUIDE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ALCATRAZ_HOOK_GUIDE_URL', plugin_dir_url( __FILE__ ) );
 
